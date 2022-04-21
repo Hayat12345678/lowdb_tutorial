@@ -1,11 +1,6 @@
 {
   "cities": [
     {
-      "id": 1,
-      "name": "Hamburg",
-      "inhabitants": 1800000
-    },
-    {
       "id": 2,
       "name": "Köln",
       "inhabitants": 1086000
@@ -14,11 +9,28 @@
       "id": 3,
       "name": "Berlin",
       "inhabitants": 4000000
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "name": "The-Emperor's-Children",
+      "author": "clear miswd"
+    },
+    {
+      "id": 2,
+      "name": "What-she-saw",
+      "author": "rozinfild"
+    },
+    {
+      "id": 3,
+      "name": "Giovannis-Room",
+      "author": "jemss-baldwen"
     },
     {
       "id": 4,
-      "name": "Bonn",
-      "inhabitants": 327000
+      "name": "Alchimist",
+      "author": "nPaulo Coelho"
     }
   ]
 }

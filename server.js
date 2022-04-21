@@ -31,11 +31,6 @@ const setUpDb = async (db) => {
       },
     ],
   };
-  if (db.data === null) {
-    db.data = defaultData;
-    await db.write();
-  }
-
   await db.read();
   if (db.data === null) {
     db.data = defaultData;
@@ -48,11 +43,6 @@ app.use(express.json());
 app.get("/", async (req, res) => {
   await db.read();
   res.send(db.data);
-});
-
-app.get("/cities", async (req, res) => {
-  await db.read();
-  res.send(db.data.cities);
 });
 
 app.get("/cities/:name", async (req, res) => {
@@ -69,7 +59,6 @@ app.patch("/cities/:id", async (req, res) => {
   const cityIndex = db.data.cities.findIndex(
     (city) => city.id === parseInt(req.params.id)
   );
-
   console.log(cityIndex);
   if (cityIndex > -1) {
     db.data.cities[cityIndex] = { ...db.data.cities[cityIndex], ...updateData };
@@ -78,6 +67,12 @@ app.patch("/cities/:id", async (req, res) => {
   } else {
     res.status(500).send("Error: no city to update");
   }
+});
+
+app.get("/cities", async (req, res) => {
+  await db.read();
+  if (db.data.cities.length > 0) res.send(db.data.cities);
+  else res.status(500).send("Error: no cities available");
 });
 
 app.post("/city/new", async (req, res) => {
@@ -94,6 +89,41 @@ app.post("/city/new", async (req, res) => {
   db.data.cities.push(newCity);
   await db.write();
   res.send(db.data.cities);
+});
+
+app.delete("/city/:id", async (req, res) => {
+  await db.read();
+  const id = Number(req.params.id);
+  console.log(id);
+  const deleteIndex = db.data.cities.findIndex((city) => city.id === id);
+  if (deleteIndex > -1) {
+    db.data.cities.splice(deleteIndex, 1);
+    await db.write();
+    res.send(db.data.cities);
+  } else {
+    res.status(500).send(`Fehler! Keine Stadt mit id ${id} gefunden.`);
+  }
+});
+app.post("/books/new", async (req, res) => {
+  await db.read();
+  const bookId = db.data.books.map((books) => {
+    return books.id;
+  });
+  bookId.sort((a, b) => b - a);
+  const newBookId = bookId[0] + 1;
+  const newBook = { ...req.body, id: newBookId };
+  console.log(bookId);
+  console.log(newBookId);
+  console.log(newBook);
+  db.data.books.push(newBook);
+  await db.write();
+  res.send(db.data.books);
+});
+
+app.get("/books", async (req, res) => {
+  await db.read();
+  console.log("Param name: ", req.params.name);
+  res.send(db.data.books);
 });
 
 app.listen(3000, function () {
