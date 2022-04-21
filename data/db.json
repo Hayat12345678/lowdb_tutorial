@@ -1,0 +1,19 @@
+{
+  "cities": [
+    {
+      "id": 1,
+      "name": "Düsseldorf",
+      "inhabitants": 1500000
+    },
+    {
+      "id": 2,
+      "name": "Köln",
+      "inhabitants": 1086000
+    },
+    {
+      "id": 3,
+      "name": "Berlin",
+      "inhabitants": 4000000
+    }
+  ]
+}
