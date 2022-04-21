@@ -14,6 +14,11 @@
       "id": 3,
       "name": "Berlin",
       "inhabitants": 4000000
+    },
+    {
+      "id": 4,
+      "name": "Bonn",
+      "inhabitants": 327000
     }
   ]
 }

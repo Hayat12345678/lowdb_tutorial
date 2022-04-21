@@ -80,6 +80,22 @@ app.patch("/cities/:id", async (req, res) => {
   }
 });
 
+app.post("/city/new", async (req, res) => {
+  await db.read();
+  const ids = db.data.cities.map((c) => {
+    return c.id;
+  });
+  ids.sort((a, b) => b - a);
+  const newId = ids[0] + 1;
+  const newCity = { ...req.body, id: newId };
+  console.log(ids);
+  console.log(newId);
+  console.log(newCity);
+  db.data.cities.push(newCity);
+  await db.write();
+  res.send(db.data.cities);
+});
+
 app.listen(3000, function () {
   console.log("http://localhost:3000, listening on port 3000");
 });
