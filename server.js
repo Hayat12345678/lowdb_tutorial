@@ -35,6 +35,12 @@ const setUpDb = async (db) => {
     db.data = defaultData;
     await db.write();
   }
+
+  await db.read();
+  if (db.data === null) {
+    db.data = defaultData;
+    await db.write();
+  }
 };
 
 setUpDb(db);
@@ -42,6 +48,11 @@ app.use(express.json());
 app.get("/", async (req, res) => {
   await db.read();
   res.send(db.data);
+});
+
+app.get("/cities", async (req, res) => {
+  await db.read();
+  res.send(db.data.cities);
 });
 
 app.get("/cities/:name", async (req, res) => {
@@ -58,6 +69,7 @@ app.patch("/cities/:id", async (req, res) => {
   const cityIndex = db.data.cities.findIndex(
     (city) => city.id === parseInt(req.params.id)
   );
+
   console.log(cityIndex);
   if (cityIndex > -1) {
     db.data.cities[cityIndex] = { ...db.data.cities[cityIndex], ...updateData };

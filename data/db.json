@@ -2,8 +2,8 @@
   "cities": [
     {
       "id": 1,
-      "name": "Düsseldorf",
-      "inhabitants": 1500000
+      "name": "Hamburg",
+      "inhabitants": 1800000
     },
     {
       "id": 2,
