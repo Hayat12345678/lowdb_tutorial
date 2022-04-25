@@ -119,6 +119,19 @@ app.post("/books/new", async (req, res) => {
   await db.write();
   res.send(db.data.books);
 });
+app.delete("/books/:id", async (req, res) => {
+  await db.read();
+  const id = Number(req.params.id);
+  console.log(id);
+  const deleteIndex = db.data.books.findIndex((book) => book.id === id);
+  if (deleteIndex > -1) {
+    db.data.books.splice(deleteIndex, 1);
+    await db.write();
+    res.send(db.data.books);
+  } else {
+    res.status(500).send(`Fehler! Keine Book mit id ${id} gefunden.`);
+  }
+});
 
 app.get("/books", async (req, res) => {
   await db.read();

@@ -9,6 +9,21 @@
       "id": 3,
       "name": "Berlin",
       "inhabitants": 4000000
+    },
+    {
+      "id": 2,
+      "name": "Hamborg",
+      "inhabitants": 1800000
+    },
+    {
+      "id": 3,
+      "name": "Düsseldorf",
+      "inhabitants": 4000000
+    },
+    {
+      "id": 3,
+      "name": "Bonn",
+      "inhabitants": 327000
     }
   ],
   "books": [
@@ -29,6 +44,16 @@
     },
     {
       "id": 4,
+      "name": "Alchimist",
+      "author": "nPaulo Coelho"
+    },
+    {
+      "id": 5,
+      "name": "Giovannis-Room",
+      "author": "jemss-baldwen"
+    },
+    {
+      "id": 6,
       "name": "Alchimist",
       "author": "nPaulo Coelho"
     }
